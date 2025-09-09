@@ -8,6 +8,7 @@ AlignConsecutiveDeclarations: false
 AlignOperands: true
 AlignTrailingComments: false
 AlwaysBreakTemplateDeclarations: Yes
+AllowShortFunctionsOnASingleLine: None
 #BraceWrapping:
   #AfterCaseLabel: false
   #AfterClass: false

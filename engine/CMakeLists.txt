@@ -10,10 +10,10 @@ file(GLOB_RECURSE ENGINE_SOURCES
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${ENGINE_SOURCES})
 
 add_library(Engine STATIC ${ENGINE_SOURCES})
+target_compile_definitions(Engine PUBLIC "VK_NO_PROTOTYPES")
 target_include_directories(Engine PRIVATE ${PROJECT_SOURCE_DIR}/src)
 target_include_directories(Engine PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_link_libraries(Engine PUBLIC SDL3::SDL3 spdlog::spdlog)
-
+target_link_libraries(Engine PUBLIC SDL3::SDL3 spdlog::spdlog Vulkan::Headers Vulkan::UtilityHeaders volk::volk_headers)
 
 if(SDL_CPU_X64)
 	if (MSVC)

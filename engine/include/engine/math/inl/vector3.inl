@@ -4,73 +4,52 @@
 #error "Do not include vector3.inl, include engine/math/vector3.hpp instead"
 #else
 
-template<typename T>
-constexpr Vector3<T> Vector3<T>::Zero = Vector3(0.0f, 0.0f, 0.0f);
+constexpr Vector3f::Vector3f() : x(0.0f), y(0.0f), z(0.0f)
+{
+}
+constexpr Vector3f::Vector3f(float v) : x(v), y(v), z(v)
+{
+}
+constexpr Vector3f::Vector3f(float x, float y, float z) : x(x), y(y), z(z)
+{
+}
 
-template<typename T>
-constexpr Vector3<T> Vector3<T>::One = Vector3(1.0f, 1.0, 1.0f);
-
-template<typename T>
-constexpr Vector3<T> Vector3<T>::Up = Vector3(0.0f, 1.0f, 0.0f);
-
-template<typename T>
-constexpr Vector3<T> Vector3<T>::Down = Vector3(0.0f, std::is_signed_v<T> ? -1.0f : 0.0f, 0.0f);
-
-template<typename T>
-constexpr Vector3<T> Vector3<T>::Left = Vector3(std::is_signed_v<T> ? -1.0f : 0.0f, 0.0f, 0.0f);
-
-template<typename T>
-constexpr Vector3<T> Vector3<T>::Right = Vector3(1.0f, 0.0f, 0.0f);
-
-template<typename T>
-constexpr Vector3<T> Vector3<T>::Forward = Vector3(0.0f, 0.0f, 1.0f);
-
-
-template<typename T>
-constexpr bool Vector3<T>::operator==(const Vector3 &v) const
+constexpr bool Vector3f::operator==(const Vector3f &v) const
 {
     return x == v.x && y == v.y && z == v.z;
 }
 
-template<typename T>
-constexpr Vector3<T> Vector3<T>::operator-() const
+constexpr Vector3f Vector3f::operator-() const
 {
-    static_assert(std::is_signed_v<T>, "You can't negate an unsigned vector");
-    return Vector3(-x, -y, -z);
+    return Vector3f(-x, -y, -z);
 }
 
-template<typename T>
-constexpr Vector3<T> Vector3<T>::operator+(const Vector3 &rhs) const
+constexpr Vector3f Vector3f::operator+(const Vector3f &rhs) const
 {
-    return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
+    return Vector3f(x + rhs.x, y + rhs.y, z + rhs.z);
 }
 
-template<typename T>
-constexpr Vector3<T> Vector3<T>::operator-(const Vector3 &rhs) const
+constexpr Vector3f Vector3f::operator-(const Vector3f &rhs) const
 {
-    return Vector3(x - rhs.x, y - rhs.y, z - rhs.z);
+    return Vector3f(x - rhs.x, y - rhs.y, z - rhs.z);
 }
 
-template<typename T>
-constexpr Vector3<T> Vector3<T>::operator*(T rhs) const
+constexpr Vector3f Vector3f::operator*(float rhs) const
 {
-    return Vector3(x * rhs, y * rhs, z * rhs);
+    return Vector3f(x * rhs, y * rhs, z * rhs);
 }
 
-template<typename T>
-constexpr Vector3<T> operator*(T lhs, const Vector3<T> &rhs)
+constexpr Vector3f operator*(float lhs, const Vector3f &rhs)
 {
-    return Vector3(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z);
+    return Vector3f(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z);
 }
 
-template<typename T>
-constexpr Vector3<T> Vector3<T>::operator/(T rhs) const
+constexpr Vector3f Vector3f::operator/(float rhs) const
 {
-    return Vector3(x / rhs, y / rhs, z / rhs);
+    return Vector3f(x / rhs, y / rhs, z / rhs);
 }
 
-template<typename T>
-constexpr Vector3<T> &Vector3<T>::operator+=(const Vector3 &rhs)
+constexpr Vector3f &Vector3f::operator+=(const Vector3f &rhs)
 {
     x += rhs.x;
     y += rhs.y;
@@ -78,8 +57,7 @@ constexpr Vector3<T> &Vector3<T>::operator+=(const Vector3 &rhs)
     return *this;
 }
 
-template<typename T>
-constexpr Vector3<T> &Vector3<T>::operator-=(const Vector3 &rhs)
+constexpr Vector3f &Vector3f::operator-=(const Vector3f &rhs)
 {
     x -= rhs.x;
     y -= rhs.y;
@@ -87,38 +65,33 @@ constexpr Vector3<T> &Vector3<T>::operator-=(const Vector3 &rhs)
     return *this;
 }
 
-template<typename T>
-constexpr Vector3<T> &Vector3<T>::operator*=(T rhs)
+constexpr Vector3f &Vector3f::operator*=(float rhs)
 {
-    x *= rhs.x;
-    y *= rhs.y;
-    z *= rhs.z;
+    x *= rhs;
+    y *= rhs;
+    z *= rhs;
     return *this;
 }
 
-template<typename T>
-constexpr Vector3<T> &Vector3<T>::operator/=(T rhs)
+constexpr Vector3f &Vector3f::operator/=(float rhs)
 {
-    x /= rhs.x;
-    y /= rhs.y;
-    z /= rhs.z;
+    x /= rhs;
+    y /= rhs;
+    z /= rhs;
     return *this;
 }
 
-template<typename T>
-auto Vector3<T>::length() const
+auto Vector3f::length() const
 {
     return std::sqrt(x * x + y * y + z * z);
 }
 
-template<typename T>
-constexpr T Vector3<T>::sq_length() const
+constexpr float Vector3f::sq_length() const
 {
     return x * x + y * y + z * z;
 }
 
-template<typename T>
-Vector3<T> &Vector3<T>::normalize()
+Vector3f &Vector3f::normalize()
 {
     if (auto len = length(); len > m_epsilon)
     {
@@ -131,27 +104,32 @@ Vector3<T> &Vector3<T>::normalize()
     return *this;
 }
 
-template<typename T>
-Vector3<T> Vector3<T>::normalized() const
+Vector3f Vector3f::normalized() const
 {
     if (auto len = length(); len > m_epsilon)
     {
         auto inv = 1.0f / len;
-        return Vector3(x * inv, y * inv, z * inv);
+        return Vector3f(x * inv, y * inv, z * inv);
     }
-    return Vector3(0.0f, 0.0f, 0.0f);
+    return Vector3f(0.0f, 0.0f, 0.0f);
 }
 
-template<typename T>
-constexpr T Vector3<T>::dot(const Vector3 &lhs, const Vector3 &rhs)
+constexpr float Vector3f::dot(const Vector3f &lhs, const Vector3f &rhs)
 {
     return lhs.x * rhs.x + lhs.y * rhs.y + lhs.z * rhs.z;
 }
 
-template<typename T>
-constexpr Vector3<T> Vector3<T>::cross(const Vector3 &lhs, const Vector3 &rhs)
+constexpr Vector3f Vector3f::cross(const Vector3f &lhs, const Vector3f &rhs)
 {
-    return Vector3(lhs.y * rhs.z - lhs.z * rhs.y, lhs.z * rhs.x - lhs.x * rhs.z, lhs.x * rhs.y - lhs.y * rhs.x);
+    return Vector3f(lhs.y * rhs.z - lhs.z * rhs.y, lhs.z * rhs.x - lhs.x * rhs.z, lhs.x * rhs.y - lhs.y * rhs.x);
 }
+
+constexpr Vector3f Vector3f::Zero = Vector3f(0.0f, 0.0f, 0.0f);
+constexpr Vector3f Vector3f::One = Vector3f(1.0f, 1.0, 1.0f);
+constexpr Vector3f Vector3f::Up = Vector3f(0.0f, 1.0f, 0.0f);
+constexpr Vector3f Vector3f::Down = Vector3f(0.0f, -1.0f, 0.0f);
+constexpr Vector3f Vector3f::Left = Vector3f(-1.0f, 0.0f, 0.0f);
+constexpr Vector3f Vector3f::Right = Vector3f(1.0f, 0.0f, 0.0f);
+constexpr Vector3f Vector3f::Forward = Vector3f(0.0f, 0.0f, 1.0f);
 
 #endif

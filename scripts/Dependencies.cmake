@@ -12,3 +12,15 @@ CPMAddPackage(
 CPMAddPackage(
         NAME catch2
         SOURCE_DIR ${CMAKE_SOURCE_DIR}/third_party/catch2)
+
+CPMAddPackage(
+        NAME volk
+        SOURCE_DIR ${CMAKE_SOURCE_DIR}/third_party/volk)
+
+CPMAddPackage(
+        NAME vulkan_headers
+        SOURCE_DIR ${CMAKE_SOURCE_DIR}/third_party/vulkan_headers)
+
+CPMAddPackage(
+        NAME vulkan_utility_libraries
+        SOURCE_DIR ${CMAKE_SOURCE_DIR}/third_party/vulkan_utility_libraries)

@@ -29,6 +29,12 @@ typedef double f64;
         u64 compound_index = 0;                                                                                        \
                                                                                                                        \
     public:                                                                                                            \
-        u32 get_index() const { return static_cast<u32>(compound_index & 0xFFFFFFFFull); }                             \
-        u32 get_generation() const { return static_cast<u32>(compound_index >> 32); }                                  \
+        u32 get_index() const                                                                                          \
+        {                                                                                                              \
+            return static_cast<u32>(compound_index & 0xFFFFFFFFull);                                                   \
+        }                                                                                                              \
+        u32 get_generation() const                                                                                     \
+        {                                                                                                              \
+            return static_cast<u32>(compound_index >> 32);                                                             \
+        }                                                                                                              \
     } name;

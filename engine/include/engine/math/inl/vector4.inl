@@ -4,75 +4,55 @@
 #error "Do not include vector4.inl, include engine/math/vector4.hpp instead"
 #else
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::Zero = Vector4(0.0f, 0.0f, 0.0f, 0.0f);
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::One = Vector4(1.0f, 1.0, 1.0f, 1.0f);
+constexpr Vector4f::Vector4f() : x(0.0f), y(0.0f), z(0.0f), w(0.0f)
+{
+}
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::Up = Vector4(0.0f, 1.0f, 0.0f, 0.0f);
+constexpr Vector4f::Vector4f(float v) : x(v), y(v), z(v), w(v)
+{
+}
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::Down = Vector4(0.0f, std::is_signed_v<T> ? -1.0f : 0.0f, 0.0f, 0.0f);
+constexpr Vector4f::Vector4f(float x, float y, float z, float w) : x(x), y(y), z(z), w(w)
+{
+}
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::Left = Vector4(std::is_signed_v<T> ? -1.0f : 0.0f, 0.0f, 0.0f, 0.0f);
-
-template<typename T>
-constexpr Vector4<T> Vector4<T>::Right = Vector4(1.0f, 0.0f, 0.0f, 0.0f);
-
-template<typename T>
-constexpr Vector4<T> Vector4<T>::Forward = Vector4(0.0f, 0.0f, 1.0f, 0.0f);
-
-template<typename T>
-constexpr Vector4<T> Vector4<T>::Backward = Vector4(0.0f, 0.0f, std::is_signed_v<T> ? -1.0f : 0.0f, 0.0f);
-
-template<typename T>
-constexpr bool Vector4<T>::operator==(const Vector4 &v) const
+constexpr bool Vector4f::operator==(const Vector4f &v) const
 {
     return x == v.x && y == v.y && z == v.z && w == v.w;
 }
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::operator-() const
+constexpr Vector4f Vector4f::operator-() const
 {
-    static_assert(std::is_signed_v<T>, "You can't negate an unsigned vector");
-    return Vector4(-x, -y, -z, -w);
+    return Vector4f(-x, -y, -z, -w);
 }
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::operator+(const Vector4 &rhs) const
+constexpr Vector4f Vector4f::operator+(const Vector4f &rhs) const
 {
-    return Vector4(x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w);
+    return Vector4f(x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w);
 }
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::operator-(const Vector4 &rhs) const
+constexpr Vector4f Vector4f::operator-(const Vector4f &rhs) const
 {
-    return Vector4(x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w);
+    return Vector4f(x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w);
 }
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::operator*(T rhs) const
+constexpr Vector4f Vector4f::operator*(float rhs) const
 {
-    return Vector4(x * rhs, y * rhs, z * rhs, w * rhs);
+    return Vector4f(x * rhs, y * rhs, z * rhs, w * rhs);
 }
 
-template<typename T>
-constexpr Vector4<T> operator*(T lhs, const Vector4<T> &rhs)
+constexpr Vector4f operator*(float lhs, const Vector4f &rhs)
 {
-    return Vector4(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z, lhs * rhs.w);
+    return Vector4f(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z, lhs * rhs.w);
 }
 
-template<typename T>
-constexpr Vector4<T> Vector4<T>::operator/(T rhs) const
+constexpr Vector4f Vector4f::operator/(float rhs) const
 {
-    return Vector4(x / rhs, y / rhs, z / rhs, w / rhs);
+    return Vector4f(x / rhs, y / rhs, z / rhs, w / rhs);
 }
 
-template<typename T>
-constexpr Vector4<T> &Vector4<T>::operator+=(const Vector4 &rhs)
+constexpr Vector4f &Vector4f::operator+=(const Vector4f &rhs)
 {
     x += rhs.x;
     y += rhs.y;
@@ -81,8 +61,7 @@ constexpr Vector4<T> &Vector4<T>::operator+=(const Vector4 &rhs)
     return *this;
 }
 
-template<typename T>
-constexpr Vector4<T> &Vector4<T>::operator-=(const Vector4 &rhs)
+constexpr Vector4f &Vector4f::operator-=(const Vector4f &rhs)
 {
     x -= rhs.x;
     y -= rhs.y;
@@ -91,40 +70,35 @@ constexpr Vector4<T> &Vector4<T>::operator-=(const Vector4 &rhs)
     return *this;
 }
 
-template<typename T>
-constexpr Vector4<T> &Vector4<T>::operator*=(T rhs)
+constexpr Vector4f &Vector4f::operator*=(float rhs)
 {
-    x *= rhs.x;
-    y *= rhs.y;
-    z *= rhs.z;
-    w *= rhs.w;
+    x *= rhs;
+    y *= rhs;
+    z *= rhs;
+    w *= rhs;
     return *this;
 }
 
-template<typename T>
-constexpr Vector4<T> &Vector4<T>::operator/=(T rhs)
+constexpr Vector4f &Vector4f::operator/=(float rhs)
 {
-    x /= rhs.x;
-    y /= rhs.y;
-    z /= rhs.z;
-    w /= rhs.w;
+    x /= rhs;
+    y /= rhs;
+    z /= rhs;
+    w /= rhs;
     return *this;
 }
 
-template<typename T>
-auto Vector4<T>::length() const
+auto Vector4f::length() const
 {
     return std::sqrt(x * x + y * y + z * z + w * w);
 }
 
-template<typename T>
-constexpr T Vector4<T>::sq_length() const
+constexpr float Vector4f::sq_length() const
 {
     return x * x + y * y + z * z + w * w;
 }
 
-template<typename T>
-Vector4<T> &Vector4<T>::normalize()
+Vector4f &Vector4f::normalize()
 {
     if (auto len = length(); len > m_epsilon)
     {
@@ -138,15 +112,23 @@ Vector4<T> &Vector4<T>::normalize()
     return *this;
 }
 
-template<typename T>
-Vector4<T> Vector4<T>::normalized() const
+Vector4f Vector4f::normalized() const
 {
     if (auto len = length(); len > m_epsilon)
     {
         auto inv = 1.0f / len;
-        return Vector4(x * inv, y * inv, z * inv, w * inv);
+        return Vector4f(x * inv, y * inv, z * inv, w * inv);
     }
-    return Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+    return Vector4f(0.0f, 0.0f, 0.0f, 0.0f);
 }
+
+constexpr Vector4f Vector4f::Zero = Vector4f(0.0f, 0.0f, 0.0f, 0.0f);
+constexpr Vector4f Vector4f::One = Vector4f(1.0f, 1.0, 1.0f, 1.0f);
+constexpr Vector4f Vector4f::Up = Vector4f(0.0f, 1.0f, 0.0f, 0.0f);
+constexpr Vector4f Vector4f::Down = Vector4f(0.0f, -1.0f, 0.0f, 0.0f);
+constexpr Vector4f Vector4f::Left = Vector4f(-1.0f, 0.0f, 0.0f, 0.0f);
+constexpr Vector4f Vector4f::Right = Vector4f(1.0f, 0.0f, 0.0f, 0.0f);
+constexpr Vector4f Vector4f::Forward = Vector4f(0.0f, 0.0f, 1.0f, 0.0f);
+constexpr Vector4f Vector4f::Backward = Vector4f(0.0f, 0.0f, -1.0f, 0.0f);
 
 #endif

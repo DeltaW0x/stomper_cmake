@@ -22,17 +22,17 @@
 ## volk
 
 - Upstream: https://github.com/zeux/volk
-- Version: 1.4.304
+- Version: vulkan-sdk-1.4.321.0
 - License: MIT
 
 ## Vulkan-Headers
 
 - Upstream: https://github.com/KhronosGroup/Vulkan-Headers
-- Version: v1.4.326
+- Version: vulkan-sdk-1.4.321.0
 - License: Apache-2.0 OR MIT
 
-## VulkanMemoryAllocator
+## Vulkan-Utility-Libraries
 
-- Upstream: https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator
-- Version: v3.3.0
-- License: MIT
+- Upstream: https://github.com/KhronosGroup/Vulkan-Utility-Libraries
+- Version: vulkan-sdk-1.4.321.0
+- License: Apache-2.0
