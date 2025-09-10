@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <utility>
 
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -21,6 +22,24 @@ typedef double f64;
 #else
 #define FORCE_INLINE inline
 #endif
+
+namespace stmp::detail
+{
+    template <typename F>
+    struct ScopeExit {
+        ScopeExit(F f) : f(f) {}
+        ~ScopeExit() { f(); }
+        F f;
+    };
+
+    template <typename F>
+    ScopeExit<F> MakeScopeExit(F f) {
+        return ScopeExit<F>(f);
+    };
+}
+#define STRING_JOIN2(arg1, arg2) DO_STRING_JOIN2(arg1, arg2)
+#define DO_STRING_JOIN2(arg1, arg2) arg1 ## arg2
+#define SCOPE_EXIT(code) auto STRING_JOIN2(scope_exit_, __COUNTER__) = stmp::detail::MakeScopeExit([=](){code;})
 
 #define MAKE_HANDLE(name)                                                                                              \
     typedef struct name                                                                                                \

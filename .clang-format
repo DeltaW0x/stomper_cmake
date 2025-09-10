@@ -9,23 +9,6 @@ AlignOperands: true
 AlignTrailingComments: false
 AlwaysBreakTemplateDeclarations: Yes
 AllowShortFunctionsOnASingleLine: None
-#BraceWrapping:
-  #AfterCaseLabel: false
-  #AfterClass: false
-  #AfterControlStatement: false
-  #AfterEnum: false
-  #AfterFunction: false
-  #AfterNamespace: false
-  #AfterStruct: false
-  #AfterUnion: false
-  #AfterExternBlock: false
-  #BeforeCatch: false
-  #BeforeElse: false
-  #BeforeLambdaBody: false
-  #BeforeWhile: false
-  #SplitEmptyFunction: true
-  #SplitEmptyRecord: true
-  #SplitEmptyNamespace: true
 BreakBeforeBraces: Allman
 BreakConstructorInitializers: AfterColon
 BreakConstructorInitializersBeforeComma: false
