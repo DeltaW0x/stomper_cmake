@@ -6,6 +6,11 @@
 - Version: 3.10.0
 - License: BSL-1.0 license
 
+## libdeflate
+
+- Upstream: https://github.com/NVIDIA/libdeflate
+- Version: gdeflate
+- License: Apache-2.0
 
 ## SDL
 
@@ -36,3 +41,4 @@
 - Upstream: https://github.com/KhronosGroup/Vulkan-Utility-Libraries
 - Version: vulkan-sdk-1.4.321.0
 - License: Apache-2.0
+
