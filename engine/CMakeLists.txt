@@ -21,7 +21,7 @@ target_link_libraries(Engine PUBLIC
 		volk::volk_headers
 		libdeflate_static)
 
-if(SDL_CPU_X64)
+if(CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
 	if (MSVC)
 		target_compile_options(Engine PUBLIC /arch:AVX2)
 	else()

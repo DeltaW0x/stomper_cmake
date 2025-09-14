@@ -29,17 +29,17 @@ CPMAddPackage(
 CPMAddPackage(
         NAME libdeflate
         SOURCE_DIR ${CMAKE_SOURCE_DIR}/third_party/libdeflate)
-if(libdeflate_ADDED)
 
+if(libdeflate_ADDED)
     file(GLOB COMMON_SOURCES ${libdeflate_SOURCE_DIR}/lib/*.c)
     file(GLOB COMMON_HEADERS ${libdeflate_SOURCE_DIR}/lib/*.h)
 
-    if(SDL_CPU_X64)
+    if(CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
         file(GLOB X86_SOURCES ${libdeflate_SOURCE_DIR}/lib/x86/*.c)
         file(GLOB X86_HEADERS ${libdeflate_SOURCE_DIR}/lib/x86/*.h)
         list(APPEND COMMON_SOURCES ${X86_SOURCES})
         list(APPEND COMMON_HEADERS ${X86_HEADERS})
-    elseif(SDL_CPU_ARM64)
+    elseif(CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64")
         file(GLOB ARM64_SOURCES ${libdeflate_SOURCE_DIR}/lib/arm/*.c)
         file(GLOB ARM64_HEADERS ${libdeflate_SOURCE_DIR}/lib/arm/*.h)
         list(APPEND COMMON_SOURCES ${ARM64_SOURCES})
